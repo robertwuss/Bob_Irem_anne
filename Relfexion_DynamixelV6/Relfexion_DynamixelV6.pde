@@ -85,9 +85,12 @@ void oscEvent(OscMessage theOscMessage) {
 
 
   if (theOscMessage.checkAddrPattern("/pose/position") == true) {
-    pos_Xi = map((float)theOscMessage.get(0).floatValue(), 200, 400, 1800, 3000);
+    //pos_Xi = map((float)theOscMessage.get(0).floatValue(), 200, 400, 1800, 3000);
+    //pos_Yi = map((float)theOscMessage.get(1).floatValue(), 400, 200, 3000, 2500);
+    
+        pos_Xi = map((float)theOscMessage.get(0).floatValue(), 0, 100, 1800, 3000);
     // 60 and 80 for ir
-    pos_Yi = map((float)theOscMessage.get(1).floatValue(), 400, 200, 3000, 2500);
+    pos_Yi = map((float)theOscMessage.get(1).floatValue(), 80, 60, 3000, 2500);
 
     //println(pos_Xi);
   }
@@ -104,7 +107,7 @@ void draw() {
     rect(30, 20, 55, 55);
     fill(255, 0, 0);
     text("click to toggle torque", 10, 15);
-    pos_Xi = map(mouseX, 0, 400, 1800, 3000);
+    pos_Xi = map(mouseX, 0, 400, 1300, 3500);
     pos_Yi = map(mouseY, 0, 400, 3000, 2500);
     //println(pos_Xi);
    // println(pos_Yi);
@@ -117,8 +120,7 @@ void draw() {
   float maxMove = 3;
   pos_Xo = int(pos_Xo + constrain((pos_Xi - pos_Xo)/damping, -maxMove, maxMove));
   pos_Yo = constrain (int(pos_Yo + constrain((pos_Yi - pos_Yo)/damping, -maxMove, maxMove)), 2500, 3000) ;
-  //pos_Zo = constrain (3500 - int(pos_Yo + constrain((pos_Yi - pos_Yo)/damping, -maxMove, maxMove)), 1500, 2000);
-   zo= (3700 - (int) map(pos_Yo, 3000, 2500, 1900, 1500));
+ zo= (3700 - (int) map(pos_Yo, 3000, 2500, 1900, 1500));
 
 
   servos[0].setGoalPosition(pos_Xo);
