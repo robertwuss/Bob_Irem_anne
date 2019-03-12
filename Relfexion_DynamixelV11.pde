@@ -80,7 +80,6 @@ void receive( byte[] data, String ip, int port ) {  // <-- extended handler
 
 
   // get the "real" message =
-  // forget the ";\n" at the end <-- !!! only for a communication with Pd !!!
   data = subset(data, 0, data.length-2);
   String message = new String( data );
   float[] list = float (split(message, ','));
@@ -88,13 +87,16 @@ void receive( byte[] data, String ip, int port ) {  // <-- extended handler
 
   tobii_X = map(list[0], -20, 20, 0, 800);
   ////println(pos_Xi);
-  tobii_Y = map(list[1], -20, 10, 900, 0);
+  float tobii_Yi = constrain(list[1], -5, 10);
+  tobii_Y = map(tobii_Yi, -5, 10, 800, 0);
+
+
   tobii_Z = tobii_Y;
   //println(pos_Yi);
-  
+
   //println( tobii_X );
-  //println( tobii_Y);
- // println(tobii_Z);
+  println( tobii_Y);
+  // println(tobii_Z);
 }
 
 
@@ -102,15 +104,10 @@ void receive( byte[] data, String ip, int port ) {  // <-- extended handler
 
 void draw() {
 
-
-
-
-
-
   if (isTorqueOn) {
     rect(30, 20, 55, 55);
     fill(0, 255, 0);
-    
+
     float targetX= tobii_X;
     float targetY = tobii_Y;
     float targetZ = tobii_Z;
@@ -126,7 +123,7 @@ void draw() {
     float dy = targetY - y;
     y += dy * easing;
     //println(y);
-    pos_Yo = map(y, 0, 800, (int)2200, (int)1300);
+    pos_Yo = map(y, 0, 800, (int)2800, (int)1800);
     int yo = round(pos_Yo);
     //println("YO " + yo);
 
@@ -138,9 +135,9 @@ void draw() {
     //println("ZO "+ zo);
     if (millis() >3000) {
 
-      //servos[0].setGoalPosition(xo);
-      //servos[1].setGoalPosition(yo);
-      //servos[2].setGoalPosition(zo);
+            servos[0].setGoalPosition(xo);
+            servos[1].setGoalPosition(yo);
+            servos[2].setGoalPosition(zo);
 
       ellipse(x, y, 20, 20);
     }
@@ -153,7 +150,7 @@ void draw() {
     text("click to toggle torque", 10, 15);
     //println(mouseY);
 
-    
+
     float targetX= mouseX;
     float targetY = mouseY;
     float targetZ = mouseY;
@@ -169,7 +166,7 @@ void draw() {
     float dy = targetY - y;
     y += dy * easing;
     //println(y);
-    pos_Yo = map(y, 0, 800, (int)2200, (int)1300);
+    pos_Yo = map(y, 0, 800, (int)2800, (int)1800);
     int yo = round(pos_Yo);
     //println("YO " + yo);
 
@@ -181,9 +178,9 @@ void draw() {
     //println("ZO "+ zo);
     if (millis() >3000) {
 
-      //servos[0].setGoalPosition(xo);
-      //servos[1].setGoalPosition(yo);
-      //servos[2].setGoalPosition(zo);
+      servos[0].setGoalPosition(xo);
+      servos[1].setGoalPosition(yo);
+      servos[2].setGoalPosition(zo);
 
       ellipse(x, y, 20, 20);
     }
