@@ -44,13 +44,13 @@ int pos_Zo1;
 boolean isTorqueOn = false;
 
 float x ;
-float y ;
-float z = 1500;
-float easing = 0.05;
+float y =0;
+float z =0;
+float easing = 0.03;
 
-float xo = 1500;
-float yo = 1500;
-float zo = 1500;
+float xo ;
+float yo = 0;
+float zo = 0;
 
 Serial myPort;
 
@@ -75,9 +75,6 @@ void setup() {
   previousPosY = new IntList();
 
 
-  float xo = 1500;
-  float yo = 2010;
-  float zo =1500;
 
 
 
@@ -127,8 +124,11 @@ void receive( byte[] data, String ip, int port ) {  // <-- extended handler
   tobii_X = map(list[0], -20, 20, 0, 800);
 
   
-  float tobii_Yi = constrain(list[1], -5, 10);
-  tobii_Y = map(tobii_Yi, -5, 10, 800, 0);
+  float tobii_Yi = constrain(list[1], -4, 10);
+  tobii_Y = map(tobii_Yi, -4, 10, 800, 0);
+  println("udp " + list[1]);
+  
+  //println(tobii_Y);
 
 
   tobii_Z = tobii_Y;
@@ -143,7 +143,7 @@ void receive( byte[] data, String ip, int port ) {  // <-- extended handler
 
 
 void draw() {
-  //  background(255);
+    //background(0);
 
 
 
@@ -155,38 +155,52 @@ void draw() {
     float targetX= tobii_X;
     float targetY = tobii_Y;
     float targetZ = tobii_Z;
+    
+    println("tobbi y" +tobii_Y);
 
     float dx = targetX - x;
-    x += dx * easing;
+    x += (dx * .02);
     //println(x);
-    pos_Xo = map(x, 0, 800, (int)3800, (int)2000);
+    pos_Xo = map(x, 0, 800, (int)4200, (int)1800);
     int xo = round(pos_Xo);
     //println("XO " +xo);
 
 
     float dy = targetY - y;
-    y += dy * easing;
+    y += dy * .05;
     //println(y);
-    pos_Yo = map(y, 0, 800, (int)2800, (int)1800);
+    //pos_Yo = (int)constrain(map(y, 0, 800, 3800, 1800), (int) 3800,  (int)1800);
+     //println(y);
+   pos_Yo = map(y, 0, 800, (int)1200, (int)300);
     int yo = round(pos_Yo);
+    int yo_constain = constrain(yo, 1200, 300);
     //println("YO " + yo);
+   //  println(yo);
+ 
 
 
     float dz = targetZ - z;
     z += dz * easing;
-    pos_Zo = map(y, 0, 800, (int)3800, (int)4000);
+    pos_Zo = map(y, 0, 800, (int)300, (int)600);
     int zo = round(pos_Zo);
-    //println("ZO "+ zo);
-    if (millis() >3000) {
+   // println("ZO "+ zo);
+   
+   int zo_constrain = constrain(zo, 300, 600);
+      //println(zo);
+    if (millis() >0) {
+     
 
-      //servos[0].setGoalPosition(xo);
-      //servos[1].setGoalPosition(yo);
-      //servos[2].setGoalPosition(zo);
+      servos[0].setGoalPosition(xo);
+      servos[1].setGoalPosition(yo);
+      servos[2].setGoalPosition(zo);
+      
+     
 
      // ellipse(x, y, 20, 20);
       
       line(x, y, tobii_prevX, tobii_prevY);
-      stroke(random(100, 255), random(80, 255), random(70, 255), 200);
+      //stroke(random(100, 255), random(80, 255), random(70, 255), 200);
+      stroke(0,40);
       line(x, y, tobii_prevX, tobii_prevY);
 
       for (int j = 0; j < history.size(); j++) {
@@ -224,7 +238,7 @@ void draw() {
     float dx = targetX - x;
     x += dx * easing;
     //println(x);
-    pos_Xo = map(x, 0, 800, (int)3800, (int)2000);
+    pos_Xo = map(x, 0, 800, (int)3800, (int)2500);
     int xo = round(pos_Xo);
     //println("XO " +xo);
 
@@ -232,28 +246,33 @@ void draw() {
     float dy = targetY - y;
     y += dy * easing;
     //println(y);
-    pos_Yo = map(y, 0, 800, (int)2800, (int)1800);
+    pos_Yo = map(y, 0, 800, (int)1200, (int)300);
     int yo = round(pos_Yo);
     //println("YO " + yo);
+    //println(yo);
+       
 
 
     float dz = targetZ - z;
     z += dz * easing;
-    pos_Zo = map(y, 0, 800, (int)3800, (int)4200);
+    int pos_Zo = int (map(y, 0, 800, (int)300, (int)600));
     int zo = round(pos_Zo);
-    //println("ZO "+ zo);
-    if (millis() >3000) {
+    //println("ZO "+ pos_Zo);
+    
+    
+  
 
-      //      servos[0].setGoalPosition(xo);
-      //      servos[1].setGoalPosition(yo);
-      //      servos[2].setGoalPosition(zo);
+            servos[0].setGoalPosition(xo);
+            servos[1].setGoalPosition(yo);
+           servos[2].setGoalPosition(pos_Zo);
 
       //ellipse(x, y, 20, 20);
 
 
 
       line(mouseX, mouseY, pmouseX, pmouseY);
-      stroke(random(100, 255), random(80, 255), random(70, 255), 200);
+      //stroke(random(100, 255), random(80, 255), random(70, 255), 200);
+      stroke(0,20);
       line(mouseX, mouseY, pmouseX, pmouseY);
 
       for (int j = 0; j < history.size(); j++) {
@@ -274,7 +293,7 @@ void draw() {
       history.add(new PVector(mouseX, mouseY));
       strokeWeight(1);
     }
-  }
+  
 
 
 
@@ -295,4 +314,9 @@ void mousePressed() {
   // if the serial port was initialised
   if (port != null) {
   }
+}
+
+void keyPressed(){
+  
+ background (255); 
 }
