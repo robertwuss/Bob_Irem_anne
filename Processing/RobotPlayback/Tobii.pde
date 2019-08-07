@@ -27,38 +27,43 @@ final int GAZE_MAX_Y        = 4000;
 float gazeX;
 float gazeY;
 
-void setupGazeTrack(){
+void setupGazeTrack() {
   gazeTrack = new GazeTrack(this);
 }
 
-void updateGazeTrack(){
+void updateGazeTrack() {
   //check presence
   if (gazeTrack.gazePresent() && !wasPresent) {
-    //println("from no presence to presence");
+    println("from no presence to presence");
+    interpolator1.interpolate(behavior1NoPresence, behavior1Presence, behavior1);
+    interpolator2.interpolate(behavior2NoPresence, behavior2Presence, behavior2);
     wasPresent = true;
     //behavior1 = behavior1Presence;
     //behavior2 = behavior2Presence;
   }
 
   if (!gazeTrack.gazePresent() && wasPresent) {
-    //println("from presence to no presence");
+    println("from presence to no presence");
     wasPresent = false;
+    
+    interpolator1.interpolate(behavior1Presence, behavior1NoPresence, behavior1);
+    interpolator2.interpolate(behavior2Presence, behavior2NoPresence, behavior2);
     //behavior1 = behavior1NoPresence;
     //behavior2 = behavior2NoPresence;
-}
+  }
   // update gaze position
   gazeX = gazeTrack.getGazeX();
   gazeY = gazeTrack.getGazeY();
 }
 
-boolean isLookingAtRobot1(float tobiiX,float tobiiY){
+boolean isLookingAtRobot1(float tobiiX, float tobiiY) {
   return tobiiX >= GAZE_ROBOT_1_MIN_X && tobiiX <= GAZE_ROBOT_1_MAX_X && tobiiY >= GAZE_ROBOT_1_MIN_Y && tobiiY <= GAZE_ROBOT_1_MAX_Y;
 }
 
-boolean isLookingAtRobot2(float tobiiX,float tobiiY){
-  if(tobiiX >= GAZE_ROBOT_2_MIN_X && tobiiX <= GAZE_ROBOT_2_MAX_X && tobiiY >= GAZE_ROBOT_2_MIN_Y  && tobiiY<= GAZE_ROBOT_2_MAX_Y){
+boolean isLookingAtRobot2(float tobiiX, float tobiiY) {
+  if (tobiiX >= GAZE_ROBOT_2_MIN_X && tobiiX <= GAZE_ROBOT_2_MAX_X && tobiiY >= GAZE_ROBOT_2_MIN_Y  && tobiiY<= GAZE_ROBOT_2_MAX_Y) {
     return true;
-  }else{
+  } else {
     return false;
   }
 }

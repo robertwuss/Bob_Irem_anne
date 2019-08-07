@@ -17,8 +17,21 @@ void draw() {
   behavior1.update();
   behavior2.update();
   // update robots based on tobii
-  behavior1.isPlaying = !isLookingAtRobot1(gazeX, gazeY);
-  behavior2.isPlaying = !isLookingAtRobot2(gazeX, gazeY);
+  //only control playback if there is presence
+  if(gazeTrack.gazePresent()){
+    if(isLookingAtRobot1(gazeX, gazeY)){
+      behavior1.pause();
+    }else{
+      behavior1.resume();
+    }
+    if(isLookingAtRobot2(gazeX, gazeY)){
+      behavior2.pause();
+    }else{
+      behavior2.resume();
+    }
+  }
+  //behavior1.isPlaying = !isLookingAtRobot1(gazeX, gazeY);
+  //behavior2.isPlaying = !isLookingAtRobot2(gazeX, gazeY);
   // display usage information
   background(0);
   text("currentRow behavior1:" + behavior1.currentRow + " / " + behavior1.lastRow + "\n\n\n" +
