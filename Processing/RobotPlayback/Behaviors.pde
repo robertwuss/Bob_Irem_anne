@@ -17,9 +17,19 @@ void setupBehaviors(){
   
   behavior1 = new Behavior(robot1);
   behavior2 = new Behavior(robot2);
-  // TODO: init the other behaviors
+  //TODO: init the other behaviors
   behavior1Presence = new Behavior(robot1);
   behavior1Presence.load("2019-08-02_19-18-20_test.txt");
+  
+//behavior1Presence = new Behavior(robot1);
+//behavior1Presence.load("2019-08-02_19-18-20_test.txt");
+//behavior1NoPresence = new Behavior(robot1);
+//behavior1NoPresence.load("robot1-no-presence.txt");
+
+//behavior2Presence = new Behavior(robot2);
+//behavior2Presence.load("robot2-presence.txt");
+//behavior2NoPresence = new Behavior(robot2);
+//behavior2NoPresence.load("robot2-no-presence.txt");
 }
 
 class Behavior{
@@ -92,6 +102,10 @@ class Behavior{
   }
   
   void updateRow(){
+    if(data == null){
+      println("error! no data to process");
+      return;
+    }
     //get the positions to interpolate to = 1st row
     firstRowData = data.getIntRow(0);
     currentRowData = data.getIntRow(currentRow);
