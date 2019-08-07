@@ -37,13 +37,15 @@ void updateGazeTrack(){
     //println("from no presence to presence");
     wasPresent = true;
     //behavior1 = behavior1Presence;
+    //behavior2 = behavior2Presence;
   }
 
   if (!gazeTrack.gazePresent() && wasPresent) {
     //println("from presence to no presence");
     wasPresent = false;
     //behavior1 = behavior1NoPresence;
-  }
+    //behavior2 = behavior2NoPresence;
+}
   // update gaze position
   gazeX = gazeTrack.getGazeX();
   gazeY = gazeTrack.getGazeY();

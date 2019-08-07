@@ -34,7 +34,7 @@ class Behavior{
   // reference to the robot to be controlled
   Robot robot;
   // animation to be used when last row is reached
-  float interpolationDurationSeconds = 6.0;
+  float interpolationDurationSeconds = 3.0;
   
   Ani interpolateToFirstRowServo1;
   Ani interpolateToFirstRowServo2;
@@ -126,6 +126,7 @@ class Behavior{
         if(robot != null){
           // send the current row of the recording
           robot.setGoalPositions(robotValues);
+
         }
      }
   }
