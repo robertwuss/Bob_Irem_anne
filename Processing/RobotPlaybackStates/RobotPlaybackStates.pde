@@ -7,14 +7,14 @@ void setup() {
   // setup behaviours
   setupBehaviors();
   // setup Tobii
-  setupGazeTrack();
+  //setupGazeTrack();
   // setup states
   setupStates();
 }
 
 void draw() {
   // update tobii
-  updateGazeTrack();
+  //updateGazeTrack();
   // update recording row index and set robot positions (if ready)
   behavior1.update();
   behavior2.update();
@@ -44,12 +44,16 @@ void drawInfo(){
     "behavior 2 curr. row: " + behavior2.currentRowData[0]+","+behavior2.currentRowData[1] +"," + behavior2.currentRowData[2] + "\n\n" +
     "interpolator1 values: " + interpolator1.robotValues[0]+","+interpolator1.robotValues[1] +"," + interpolator1.robotValues[2] + "\n" +
     "interpolator2 values: " + interpolator2.robotValues[0]+","+interpolator2.robotValues[1] +"," + interpolator2.robotValues[2] + "\n\n" +
-    "current state: " + currentState.toString().substring(currentState.toString().indexOf("$")+1,currentState.toString().indexOf("@")) + "\n\n" + 
+    "current state: " + currentState.toString().substring(currentState.toString().indexOf("$")+1,currentState.toString().indexOf("@")) + "\n" + 
     "press 'p' to simulate presence \n" +
-    "press 'n' to simulate no presence \n" 
+    "press 'n' to simulate no presence \n" + 
+    "behavior 1 paused: " + behavior1.isPaused() + "\n" + 
+    "behavior 2 paused: " + behavior2.isPaused() + "\n" + 
+    "interpolator 1 paused: " + !interpolator1.interpolator1Servo1.isPlaying() + "\n" +
+    "interpolator 2 paused: " + !interpolator2.interpolator1Servo1.isPlaying() + "\n"
     , 10, 15);
 }
-
+boolean isTestPaused;
 void keyPressed() {
   if (key == '1') {
     robot1.isActive = !robot1.isActive;
@@ -62,5 +66,15 @@ void keyPressed() {
   }
   if(key == 'n'){
     currentState.onNoPresence();
+  }
+  if(key == ' '){
+    isTestPaused = !isTestPaused;
+    if(isTestPaused){
+      behavior1.pause();
+      behavior2.pause();
+    }else{
+      behavior1.resume();
+      behavior2.resume();
+    }
   }
 }

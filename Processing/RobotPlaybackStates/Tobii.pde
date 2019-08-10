@@ -27,7 +27,7 @@ void updateGazeTrack() {
   // GazeTrack library still sends gazePresent() as true even if no tobii is connected
   // leftEye,rightEye present is more reliable
   //println(gazeTrack.leftEyePresent(),gazeTrack.rightEyePresent(),gazeTrack.gazePresent());
-  boolean isPresent = gazeTrack.leftEyePresent() && gazeTrack.rightEyePresent(); 
+  boolean isPresent = gazeTrack.leftEyePresent() || gazeTrack.rightEyePresent(); 
   if(gazeX > 0.0 && gazeY > 0.0){
     //check presence
     if (isPresent && !wasPresent) {
