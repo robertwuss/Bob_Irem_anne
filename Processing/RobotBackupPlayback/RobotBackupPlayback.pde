@@ -4,7 +4,9 @@ void setup () {
   frameRate(30);
   // setup servos and robot(s)
   setupServos();
+  // setup behaviours
   setupBehaviors();
+  // setup gaze track
   setupGazeTrack();
 }
 
