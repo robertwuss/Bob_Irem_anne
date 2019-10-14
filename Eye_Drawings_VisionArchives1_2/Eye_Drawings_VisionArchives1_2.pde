@@ -27,6 +27,8 @@ void setup() {
 
   // setup servos and robot(s)
   setupServos();
+  setupBehaviors();
+  
 }
 
 

@@ -44,11 +44,11 @@ void setupServos() {
   // enable torque
   robot1.setTorque(true);
   // initialize robot passing the coresponding servo to each one
-  robot2 = new Robot(new XH430[]{ servos[3], servos[4],servos[5] });
-    // enable torque
-    //robot2.setTorque(true);
+  robot2 = new Robot(new XH430[]{ servos[3], servos[4], servos[5] });
+  // enable torque
+  //robot2.setTorque(true);
 
-    robot3 = new Robot(new XH430[]{servos[6], servos [7], servos [8]});
+  robot3 = new Robot(new XH430[]{servos[6], servos [7], servos [8]});
 
   robot1.isActive = true;
   robot2.isActive = true;
