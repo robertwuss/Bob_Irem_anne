@@ -23,11 +23,9 @@ void setup() {
 
   oscP5 = new OscP5(this, 12000);
   myRemoteLocation = new NetAddress("127.0.0.1", 12000);
-
-
   // setup servos and robot(s)
   setupServos();
- /// setupBehaviors();
+  setupBehaviors();
   
 }
 
@@ -35,6 +33,6 @@ void setup() {
 void draw() {
   eyedrawing.draw();
   eyerobot.update();
-  //behavior1.update();
+  behavior1.update();
   //behvaior2.update();
 }

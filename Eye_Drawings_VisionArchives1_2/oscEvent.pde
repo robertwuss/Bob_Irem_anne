@@ -4,16 +4,16 @@ void oscEvent(OscMessage theOscMessage) {
 
     float leftX= theOscMessage.get(0).floatValue();
     float leftY= theOscMessage.get(1).floatValue(); 
-    
-   if (Float.isNaN(leftX)) {
-     
-     return;
-   }
 
-  if (Float.isNaN(leftY)) {
-     
-     return;
-   }
+    if (Float.isNaN(leftX)) {
+
+      return;
+    }
+
+    if (Float.isNaN(leftY)) {
+
+      return;
+    }
     leftEyeX = leftX;
     leftEyeY = leftY;
     //println(leftX);
@@ -22,5 +22,18 @@ void oscEvent(OscMessage theOscMessage) {
   if (theOscMessage.addrPattern().equals("/rightEye/coord")) {
     float rightX= theOscMessage.get(0).floatValue();
     float rightY= theOscMessage.get(1).floatValue();
+
+    if (Float.isNaN(rightX)) {
+
+      return;
+    }
+
+    if (Float.isNaN(rightY)) {
+
+      return;
+    }
+    leftEyeX = rightX;
+    leftEyeY = rightY;
+    //println(leftX);
   }
 }

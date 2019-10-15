@@ -1,5 +1,5 @@
 class Eyerobot {
-  int[] robotValues = new int[3];
+  int[] robot1Values = new int[3];
   float r1_x ;
   float r1_y ;
   float r1_z  ;
@@ -37,12 +37,12 @@ class Eyerobot {
     int pos_Zo = int (map(r1_y,-.1, 1, (int)3500, (int)3100));
     int zo = round(pos_Zo);
    
-    robotValues[0] = xo;
-    robotValues[1] = zo;
-    robotValues[2] = yo;
+    robot1Values[0] = xo;
+    robot1Values[1] = zo;
+    robot1Values[2] = yo;
 
     // send the positions to robot1
-    //robot1.setGoalPositions(robotValues);
-    println(robotValues);
+    robot1.setGoalPositions(robot1Values);
+    println("robot1" +robot1Values);
   }
 }
