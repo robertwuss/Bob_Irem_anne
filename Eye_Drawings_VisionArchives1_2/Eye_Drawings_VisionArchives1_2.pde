@@ -27,7 +27,7 @@ void setup() {
 
   // setup servos and robot(s)
   setupServos();
-  setupBehaviors();
+ /// setupBehaviors();
   
 }
 
@@ -35,4 +35,6 @@ void setup() {
 void draw() {
   eyedrawing.draw();
   eyerobot.update();
+  //behavior1.update();
+  //behvaior2.update();
 }

@@ -1,8 +1,9 @@
 class Eyedrawing {
 
+
   void draw() {
-    float leftEyeX = 0;
-    float leftEyeY= 0;
+
+    
     float rightEyeX = 0;
     float rightEyeY= 0;
 
@@ -11,6 +12,7 @@ class Eyedrawing {
     float xRight = map(leftEyeX, 0.1, 0.8, 1920, 0);
     float yRight = map(leftEyeY, -.1, 1, 0, 1020);
 
+    //println(x);
     for (int i = 0; i < history.size(); i++) {
       PVector p = (PVector) history.get(i);
       float d = dist(x, y, p.x, p.y);
