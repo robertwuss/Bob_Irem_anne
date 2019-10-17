@@ -18,6 +18,7 @@ void oscEvent(OscMessage theOscMessage) {
     float leftX= theOscMessage.get(0).floatValue();
     float leftY= theOscMessage.get(1).floatValue(); 
 
+    // check for NaN recieved from Tobii SDK
     if (Float.isNaN(leftX)) {
 
       return;
