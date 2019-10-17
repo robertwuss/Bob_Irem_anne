@@ -49,6 +49,7 @@ void setupServos() {
   //robot2.setTorque(true);
 
   //robot3 = new Robot(new XH430[]{servos[4], servos [5]});
+  //robot3.setTorque(true);
 
   robot1.isActive = true;
   //robot2.isActive = true;
