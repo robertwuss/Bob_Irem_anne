@@ -1,3 +1,6 @@
+//Eyerobot eyerobot;
+
+
 //class Eyerobot {
 //  int[] robot1Values = new int[3];
 //  float r1_x ;

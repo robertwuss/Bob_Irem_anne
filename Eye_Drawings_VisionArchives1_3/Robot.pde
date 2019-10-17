@@ -42,13 +42,13 @@ void setupServos() {
   // initialize robot passing the coresponding servo to each one
   robot1 = new Robot(new XH430[]{ servos[0], servos[1]});
   // enable torque
-  robot1.setTorque(false);
+  robot1.setTorque( false);
   // initialize robot passing the coresponding servo to each one
-  //robot2 = new Robot(new XH430[]{ servos[3], servos[4], servos[5] });
+  //robot2 = new Robot(new XH430[]{ servos[2], servos[3] });
   // enable torque
   //robot2.setTorque(true);
 
-  //robot3 = new Robot(new XH430[]{servos[6], servos [7], servos [8]});
+  //robot3 = new Robot(new XH430[]{servos[4], servos [5]});
 
   robot1.isActive = true;
   //robot2.isActive = true;
@@ -85,10 +85,10 @@ class Robot {
 
   // set goal positions for all servos
   void setGoalPositions(int[] positions) {
-    // nothing to do if this robot is inactive
-    //if(!isActive){
-    // return;
-    // }
+     //nothing to do if this robot is inactive
+    if(!isActive){
+     return;
+     }
 
     // error checking
     if (servos == null) {

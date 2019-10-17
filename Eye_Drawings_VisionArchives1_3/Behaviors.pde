@@ -9,10 +9,10 @@ void setupBehaviors() {
   Ani.noAutostart();
 
   behavior1 = new Behavior(robot1);
-  //behavior2 = new Behavior(robot3);
+  //behavior2 = new Behavior(robot2);
   
   behavior1.load("robot1.csv");
-  //behavior2.load("robot3-presence.txt");
+  //behavior2.load("robot2-presence.txt");
   
   behavior1.resume();
   //behavior2.resume();

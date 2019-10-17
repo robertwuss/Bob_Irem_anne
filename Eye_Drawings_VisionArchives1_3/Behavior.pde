@@ -52,7 +52,7 @@ class Behavior {
     // try to load, handling errors
     try {
       // load TSV (tab separated values) file
-      data = loadTable(path, "header");
+      data = loadTable(path, "tsv");
       // reset current row
       currentRow = 0;
       lastRow = data.getRowCount() - 1;

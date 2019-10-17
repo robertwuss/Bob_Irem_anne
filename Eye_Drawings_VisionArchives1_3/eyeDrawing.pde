@@ -1,9 +1,20 @@
+ArrayList history; 
+float leftEyeX = 0;
+float leftEyeY= 0;
+Eyedrawing eyedrawing;
+
+
+void setupEyedrawing() {
+  history  = new ArrayList();
+  eyedrawing = new Eyedrawing();
+}
+
 class Eyedrawing {
 
 
   void draw() {
 
-    
+
     float rightEyeX = 0;
     float rightEyeY= 0;
 
