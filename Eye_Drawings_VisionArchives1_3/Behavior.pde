@@ -14,15 +14,15 @@ class Behavior {
 
   Ani interpolateToFirstRowServo1;
   Ani interpolateToFirstRowServo2;
-  Ani interpolateToFirstRowServo3;
+  
 
   float servo1Value;
   float servo2Value;
-  float servo3Value;
-  int[] robotValues = new int[3];
+ 
+  int[] robotValues = new int[2];
 
-  int[] firstRowData = new int[3];
-  int[] currentRowData = new int[3];
+  int[] firstRowData = new int[2];
+  int[] currentRowData = new int[2];
 
   boolean isInterpolating;
 
@@ -31,14 +31,14 @@ class Behavior {
     // init animation(this sketch,duration in seconds, property to animate,value to animate to, easing, callback
     interpolateToFirstRowServo1 = new Ani(this, interpolationDurationSeconds, "servo1Value", 0, Ani.QUAD_OUT, "onUpdate:onInterpolationUpdate, onEnd:onInterpolationComplete");
     interpolateToFirstRowServo2 = new Ani(this, interpolationDurationSeconds, "servo2Value", 0, Ani.QUAD_OUT);
-    interpolateToFirstRowServo3 = new Ani(this, interpolationDurationSeconds, "servo3Value", 0, Ani.QUAD_OUT);
+   
   }
 
   void onInterpolationUpdate(Ani animation) {
     // convert floats to ints
     robotValues[0] = round(servo1Value);
     robotValues[1] = round(servo2Value);
-    robotValues[2] = round(servo3Value);
+    
    //println("onInterpolationUpdate: " +robotValues[0] + "," + robotValues[1] + "," + robotValues[2]);
   } 
 
@@ -52,7 +52,7 @@ class Behavior {
     // try to load, handling errors
     try {
       // load TSV (tab separated values) file
-      data = loadTable(path, "tsv");
+      data = loadTable(path, "header");
       // reset current row
       currentRow = 0;
       lastRow = data.getRowCount() - 1;
@@ -72,7 +72,7 @@ class Behavior {
     if(isInterpolating){
       interpolateToFirstRowServo1.pause();
       interpolateToFirstRowServo2.pause();
-      interpolateToFirstRowServo3.pause();
+      
     }else{
       isPlaying = false;
     }
@@ -82,7 +82,7 @@ class Behavior {
     if(isInterpolating){
       interpolateToFirstRowServo1.resume();
       interpolateToFirstRowServo2.resume();
-      interpolateToFirstRowServo3.resume();
+      
     }else{
       isPlaying = true;
     }
@@ -114,14 +114,14 @@ class Behavior {
         //set these positions to the interpolator1s
         interpolateToFirstRowServo1.setBegin(currentRowData[0]);
         interpolateToFirstRowServo2.setBegin(currentRowData[1]);
-        interpolateToFirstRowServo3.setBegin(currentRowData[2]);
+       
         interpolateToFirstRowServo1.setEnd(firstRowData[0]);
         interpolateToFirstRowServo2.setEnd(firstRowData[1]);
-        interpolateToFirstRowServo3.setEnd(firstRowData[2]);
+        
         //start interpolating      
         interpolateToFirstRowServo1.start();
         interpolateToFirstRowServo2.start();
-        interpolateToFirstRowServo3.start();
+        
       }
     }
   }
@@ -134,8 +134,8 @@ class Behavior {
       // pass table data to robot
       if (robot != null) {
         // send the current row of the recording
-        robot2.setGoalPositions(robotValues);
-        println("robot2 " + robotValues);
+        robot.setGoalPositions(robotValues);
+        println("robot1 " + robotValues[0], robotValues[1]);
       }
     }
   }

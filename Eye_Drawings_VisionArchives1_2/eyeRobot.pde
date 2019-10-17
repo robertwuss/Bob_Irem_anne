@@ -43,6 +43,6 @@ class Eyerobot {
 
     // send the positions to robot1
     robot1.setGoalPositions(robot1Values);
-    println("robot1" +robot1Values);
+    //println("robot1" +robot1Values);
   }
 }

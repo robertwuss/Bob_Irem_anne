@@ -8,15 +8,15 @@ String PORT_NAME = "/dev/tty.usbserial-FT2H2ZCB";
 
 Serial port;
 // double check these are the right servo IDs
-int[] servoIDs = {14,22,23,21, 24, 25};
+int[] servoIDs = {21,25};
 // total servos
-int numServos = 6;
+int numServos = 2;
 // reference to all servos
 XH430[] servos = new XH430[numServos];
 // first robot
 Robot robot1;
 // second robot
-Robot robot2;
+//Robot robot2;
 //Robot robot3;
 
 void setupServos() {
@@ -40,18 +40,18 @@ void setupServos() {
     servos[i] = new XH430(port, servoIDs[i]);
   }
   // initialize robot passing the coresponding servo to each one
-  robot1 = new Robot(new XH430[]{ servos[0], servos[1], servos[2]});
+  robot1 = new Robot(new XH430[]{ servos[0], servos[1]});
   // enable torque
-  robot1.setTorque(true);
+  robot1.setTorque(false);
   // initialize robot passing the coresponding servo to each one
-  robot2 = new Robot(new XH430[]{ servos[3], servos[4], servos[5] });
+  //robot2 = new Robot(new XH430[]{ servos[3], servos[4], servos[5] });
   // enable torque
-  robot2.setTorque(true);
+  //robot2.setTorque(true);
 
   //robot3 = new Robot(new XH430[]{servos[6], servos [7], servos [8]});
 
   robot1.isActive = true;
-  robot2.isActive = true;
+  //robot2.isActive = true;
   //robot3.isActive = true;
 }
 
