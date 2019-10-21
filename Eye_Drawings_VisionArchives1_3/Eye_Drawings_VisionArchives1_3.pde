@@ -15,6 +15,8 @@ void setup() {
 void draw() {
   eyedrawing.draw();
   behavior1.update();
+  behavior2.update();
+  behavior3.update();
   drawTable();
  
 }

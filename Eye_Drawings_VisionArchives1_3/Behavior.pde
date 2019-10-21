@@ -102,7 +102,7 @@ class Behavior {
       return;
     }
     //get the positions to interpolate to = 1st row
-    firstRowData = data.getIntRow(0);
+    firstRowData = data.getIntRow(1);
     currentRowData = data.getIntRow(currentRow);
     // go to next frame only if there is at least one more frame to play 
     if (currentRow < lastRow) {
@@ -134,8 +134,10 @@ class Behavior {
       // pass table data to robot
       if (robot != null) {
         // send the current row of the recording
+        
+        
         robot.setGoalPositions(robotValues);
-        println("robot1 " + robotValues[0], robotValues[1]);
+        //println("robot2 " + robotValues[2], robotValues[3]);
       }
     }
   }
