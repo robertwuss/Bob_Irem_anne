@@ -30,8 +30,8 @@ void drawTable() {
   int r1_xout = constrain(round(r1_pos_Xo),2600,3900);
 
   float targetY= leftEyeY;
-  float dy = targetX - r1_y; 
-  r1_y += dx * easing;
+  float dy = targetY - r1_y; 
+  r1_y += dy * easing;
   r1_pos_Yo = r1_y;
   int r1_yout = constrain(round(r1_pos_Yo), 2050,3200);
 
