@@ -17,9 +17,10 @@ void setupTable() {
 
 void drawTable() {
   TableRow row = table.addRow();
-  // constrain data to the constrains of the motors
-  leftEyeX =map(leftEyeX, -1, 1, 3000, 4000);
-  leftEyeY =map(leftEyeY, -1, 2, 2950, 3100);
+  // map data to the constrains of the motors
+  //All motors are constrained to the same mappings
+  leftEyeX =map(leftEyeX, -1, 1, 2600, 3900);
+  leftEyeY =map(leftEyeY, -1, 2, 2050, 3200);
 
   // eases the data because of how fast the eye moves
   float targetX= leftEyeX;
@@ -32,7 +33,7 @@ void drawTable() {
   float dy = targetX - r1_y; 
   r1_y += dx * easing;
   r1_pos_Yo = r1_y;
-  int r1_yout = constrain(round(r1_pos_Yo), 2950,3100);
+  int r1_yout = constrain(round(r1_pos_Yo), 2050,3200);
 
   //Set the values of all columns in that row.
   row.setFloat("x", r1_xout );
