@@ -39,7 +39,7 @@ class Behavior {
     eyeDrawingValues[0] = round(eyedrawing_X);
     eyeDrawingValues[1] = round(eyedrawing_Y);
     
-   //println("onInterpolationUpdate: " +eyeDrawingValues[0] + "," + robotValues[1] + "," + robotValues[2]);
+   println("onInterpolationUpdate: " +eyeDrawingValues[0] + "," + eyeDrawingValues[1] );
   } 
 
   void onInterpolationComplete(Ani animation) {
@@ -52,10 +52,12 @@ class Behavior {
     // try to load, handling errors
     try {
       // load TSV (tab separated values) file
-      data = loadTable(path, "header");
+      data = loadTable(path, "tsv");
+      
       // reset current row
       currentRow = 0;
       lastRow = data.getRowCount() - 1;
+      
       if (lastRow == -1) {
         println("empty tsv file!!!");
       }
@@ -131,7 +133,7 @@ class Behavior {
    
 
       updateRow();
-      println(eyeDrawingValues);
+      println(eyeDrawingValues[0], eyeDrawingValues[1]);
 
    
       

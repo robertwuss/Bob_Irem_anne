@@ -14,7 +14,7 @@ void setupBehaviors() {
   //behavior3 = new Behavior(robot3);
 
 
-  behavior1.load("r1test");
+  behavior1.load("EyedrawingData1");
   //behavior2.load("r2test");
   //behavior3.load("r3test");
 
