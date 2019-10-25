@@ -137,7 +137,7 @@ class Behavior {
         
         
         robot.setGoalPositions(robotValues);
-        //println("robot2 " + robotValues[2], robotValues[3]);
+        println("robot1 " + robotValues[0], robotValues[1]);
       }
     }
   }

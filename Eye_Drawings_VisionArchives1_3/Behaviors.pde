@@ -10,15 +10,15 @@ void setupBehaviors() {
   Ani.noAutostart();
 
   behavior1 = new Behavior(robot1);
-  behavior2 = new Behavior(robot2);
-  behavior3 = new Behavior(robot3);
+  //behavior2 = new Behavior(robot2);
+  //behavior3 = new Behavior(robot3);
 
 
-  behavior1.load("r1test");
-  behavior2.load("r2test");
-  behavior3.load("r3test");
+  behavior1.load("r1_TOPHAT_recording");
+  //behavior2.load("r2test");
+  //behavior3.load("r3test");
 
   behavior1.resume();
-  behavior2.resume();
-  behavior3.resume();
+  //behavior2.resume();
+  //behavior3.resume();
 }

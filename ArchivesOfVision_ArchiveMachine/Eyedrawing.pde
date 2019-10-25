@@ -15,7 +15,7 @@ class Eyedrawing {
   void draw() {
 
     float leftEyeX = behavior1.eyeDrawingValues[0];
-    float leftEyeY = behavior1.eyeDrawingValues[0];
+    float leftEyeY = behavior1.eyeDrawingValues[1];
 
     float x = map(leftEyeX, 0.1, 0.8, 1920, 0);
     float y = map(leftEyeY, -.1, 1, 0, 1020);
