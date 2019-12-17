@@ -8,7 +8,7 @@ String PORT_NAME = "/dev/tty.usbserial-FT2H2ZCB";
 
 Serial port;
 // double check these are the right servo IDs
-int[] servoIDs = { 25, 21};
+int[] servoIDs = { 22, 14};
 // total servos
 int numServos = 2;
 // reference to all servos
